@@ -18,6 +18,7 @@ targetCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 ext {
@@ -26,14 +27,17 @@ ext {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter")
+    compile("org.springframework.boot:spring-boot-starter-web")
 
     compile('org.projectlombok:lombok:1.16.20')
 
+    testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("org.junit.jupiter:junit-jupiter-api:${junitJupiterVersion}")
     testCompile("org.junit.jupiter:junit-jupiter-engine:${junitJupiterVersion}")
     testCompile("org.junit.jupiter:junit-jupiter-params:${junitJupiterVersion}")
     testCompile("org.junit.platform:junit-platform-launcher:${junitPlatformVersion}")
     testCompile("org.junit.platform:junit-platform-runner:${junitPlatformVersion}")
+    testCompile("com.jayway.restassured:spring-mock-mvc:2.9.0")
+    testCompile("com.github.sbrannen:spring-test-junit5:1.0.3")
 }
 

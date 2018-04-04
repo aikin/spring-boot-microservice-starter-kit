@@ -1,5 +1,6 @@
-package me.aikin.seed;
+package me.aikin.seed.unit;
 
+import me.aikin.seed.App;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
