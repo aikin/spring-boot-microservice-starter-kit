@@ -1,11 +1,18 @@
+import org.yaml.snakeyaml.Yaml
+
 buildscript {
     repositories {
         mavenCentral()
     }
     dependencies {
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE")
+        classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE'
+        classpath 'org.yaml:snakeyaml:1.20'
     }
+}
+
+plugins {
+    id "org.flywaydb.flyway" version "5.0.7"
 }
 
 apply plugin: 'java'
@@ -27,8 +34,9 @@ ext {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
+    compile('org.springframework.boot:spring-boot-starter-web')
 
+    compile('mysql:mysql-connector-java:6.0.6')
     compile('org.projectlombok:lombok:1.16.20')
 
     testCompile("org.springframework.boot:spring-boot-starter-test")
@@ -39,5 +47,19 @@ dependencies {
     testCompile("org.junit.platform:junit-platform-runner:${junitPlatformVersion}")
     testCompile("com.jayway.restassured:spring-mock-mvc:2.9.0")
     testCompile("com.github.sbrannen:spring-test-junit5:1.0.3")
+}
+
+
+def env = project.hasProperty('env') ? env : 'dev'
+def dbConfig = new Yaml().load( new File("./config/${env}/db.yml").newInputStream() )
+
+flyway {
+    driver = 'com.mysql.cj.jdbc.Driver'
+    url = dbConfig.db.url
+    user = dbConfig.db.user
+    password = dbConfig.db.password
+    table = 'schema_version'
+    locations = ["filesystem:${projectDir}/src/main/resources/db/migration/mysql"]
+    sqlMigrationPrefix = 'MySQL-'
 }
 

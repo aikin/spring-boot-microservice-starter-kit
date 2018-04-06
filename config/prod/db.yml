@@ -1,0 +1,4 @@
+db:
+    url: jdbc:mysql://127.0.0.1:3306/spring_boot_seed_prod
+    password: mysql
+    user: mysql
