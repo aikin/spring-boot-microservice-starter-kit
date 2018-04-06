@@ -2,6 +2,8 @@ server:
   port: 8081
 
 spring:
+  profiles:
+    active: test
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/spring_boot_seed_test
     username: root

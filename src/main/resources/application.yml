@@ -8,3 +8,5 @@ spring:
     password: PLACE_HOLDER
     name: PLACE_HOLDER
     driver-class-name: com.mysql.cj.jdbc.Driver
+  profiles:
+    active: PLACE_HOLDER

@@ -64,3 +64,15 @@ flyway {
     sqlMigrationPrefix = 'MySQL-'
 }
 
+
+processResources {
+    println("active profile: ${env}")
+
+    include "application.yml"
+    include "application-${env}.yml"
+    include 'db/migration/**'
+}
+
+build.dependsOn processResources
+bootRun.systemProperty 'spring.profiles.active', env
+
