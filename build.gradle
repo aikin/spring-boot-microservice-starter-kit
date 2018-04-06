@@ -51,13 +51,14 @@ dependencies {
 
 
 def env = project.hasProperty('env') ? env : 'dev'
-def dbConfig = new Yaml().load( new File("./config/${env}/db.yml").newInputStream() )
+def filePath = env == 'test' ? "${projectDir}/src/test/resources/application-${env}.yml" : "${projectDir}/src/main/resources/application-${env}.yml"
+def config = new Yaml().load(new File(filePath).newInputStream())
 
 flyway {
     driver = 'com.mysql.cj.jdbc.Driver'
-    url = dbConfig.db.url
-    user = dbConfig.db.user
-    password = dbConfig.db.password
+    url = config.spring.datasource.url
+    user = config.spring.datasource.username
+    password = config.spring.datasource.password
     table = 'schema_version'
     locations = ["filesystem:${projectDir}/src/main/resources/db/migration/mysql"]
     sqlMigrationPrefix = 'MySQL-'
