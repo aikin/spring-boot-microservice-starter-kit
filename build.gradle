@@ -19,6 +19,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'org.springframework.boot'
+apply plugin: "checkstyle"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -76,3 +77,15 @@ processResources {
 build.dependsOn processResources
 bootRun.systemProperty 'spring.profiles.active', env
 
+checkstyle {
+    configFile = project(':').file("config/checkstyle/checkstyle.xml")
+    configProperties = ["suppressionFile" : project(':').file("config/checkstyle/suppressions.xml")]
+    toolVersion = "6.0"
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}

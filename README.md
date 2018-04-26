@@ -18,13 +18,15 @@
  - [ ] 环境管理： Vagrant/Docker
 
 ### 代码规范：
- - [ ] checkstyle/pmd
- - [ ] sonar
+ - [x] Checkstyle/PMD/FindBugs
+ - [ ] SonarQube
+ - [ ] Editorconfig
       
 ### 测试策略：
   - [ ] Unit Test
   - [ ] Component Test
   - [ ] Api Test 
+  - [ ] Test Coverage 
 
 ### 持续交付：
   - [ ] GoCD/Jenkins
