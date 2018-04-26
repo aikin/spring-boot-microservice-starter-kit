@@ -20,7 +20,7 @@
 ### 代码规范：
  - [x] Checkstyle/PMD/FindBugs
  - [ ] SonarQube
- - [ ] Editorconfig
+ - [x] Editorconfig
       
 ### 测试策略：
   - [ ] Unit Test
