@@ -9,6 +9,7 @@ buildscript {
         classpath "org.junit.platform:junit-platform-gradle-plugin:1.1.0"
         classpath "org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE"
         classpath "gradle.plugin.com.boxfuse.client:gradle-plugin-publishing:5.0.7"
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
     }
 }
 
@@ -26,6 +27,7 @@ apply {
     from("tasks/flyway.gradle")
     from("tasks/test-coverage.gradle")
     from("tasks/checkstyle.gradle")
+    from("tasks/sonarqube.gradle")
 }
 
 

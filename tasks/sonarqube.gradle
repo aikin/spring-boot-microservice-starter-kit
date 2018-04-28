@@ -1,0 +1,11 @@
+
+apply plugin: 'org.sonarqube'
+
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "spring-boot-best-seed"
+        property "sonar.projectKey", "spring-boot-best-seed"
+        property "sonar.jacoco.reportPaths", "${buildDir}/jacoco/junitPlatformTest.exec"
+    }
+}
