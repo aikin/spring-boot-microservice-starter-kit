@@ -20,7 +20,7 @@
 ### 代码规范：
  - [x] Checkstyle/PMD/FindBugs
  - [x] Editorconfig
- - [ ] SonarQube
+ - [x] SonarQube
       
 ### 测试策略：
   - [ ] Unit Test
@@ -35,10 +35,18 @@
   
 
 ### 微服务策略
-  - [ ] 服务发现
-  - [ ] 服务注册
-  - [ ] 服务熔断
-  - [ ] 服务配置管理
+  - [ ] Discovery
+  - [ ] Register
+  - [ ] Hystrix
+  - [ ] Consul Config
+  
+### 应用层
+  - [x] Database schema management(flyway)
+  - [x] DIP(Spring Container)  
+  - [ ] AOP(Spring AOP)
+  - [ ] ORM(mybatis)
+  - [ ] Security(Spring Security)  
+  - [ ] Session management  
   
 ### 安全策略：
   *
