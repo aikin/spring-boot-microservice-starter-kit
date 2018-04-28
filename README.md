@@ -25,8 +25,8 @@
 ### 测试策略：
   - [ ] Unit Test
   - [ ] Component Test
-  - [ ] Api Test 
-  - [ ] Test Coverage 
+  - [x] Api Test 
+  - [x] Test Coverage 
 
 ### 持续交付：
   - [ ] GoCD/Jenkins
