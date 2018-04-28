@@ -1,34 +1,36 @@
-import org.yaml.snakeyaml.Yaml
-
 buildscript {
     repositories {
         mavenCentral()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath 'org.junit.platform:junit-platform-gradle-plugin:1.1.0'
         classpath 'org.springframework.boot:spring-boot-gradle-plugin:1.5.10.RELEASE'
-        classpath 'org.yaml:snakeyaml:1.20'
+        classpath 'gradle.plugin.com.boxfuse.client:gradle-plugin-publishing:5.0.7'
     }
 }
 
-plugins {
-    id "org.flywaydb.flyway" version "5.0.7"
+repositories {
+    mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'org.springframework.boot'
-apply plugin: "checkstyle"
-apply plugin: "jacoco"
+
+apply {
+    from("tasks/flyway.gradle")
+    from("tasks/test-coverage.gradle")
+    from("tasks/checkstyle.gradle")
+}
+
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
-
-repositories {
-    mavenCentral()
-    maven { url 'https://jitpack.io' }
-}
 
 ext {
     junitJupiterVersion = '5.1.0'
@@ -52,20 +54,8 @@ dependencies {
 }
 
 
+
 def env = project.hasProperty('env') ? env : 'dev'
-def filePath = env == 'test' ? "${projectDir}/src/test/resources/application-${env}.yml" : "${projectDir}/src/main/resources/application-${env}.yml"
-def config = new Yaml().load(new File(filePath).newInputStream())
-
-flyway {
-    driver = 'com.mysql.cj.jdbc.Driver'
-    url = config.spring.datasource.url
-    user = config.spring.datasource.username
-    password = config.spring.datasource.password
-    table = 'schema_version'
-    locations = ["filesystem:${projectDir}/src/main/resources/db/migration/mysql"]
-    sqlMigrationPrefix = 'MySQL-'
-}
-
 
 processResources {
     println("active profile: ${env}")
@@ -74,72 +64,5 @@ processResources {
     include "application-${env}.yml"
     include 'db/migration/**'
 }
-
 build.dependsOn processResources
 bootRun.systemProperty 'spring.profiles.active', env
-
-checkstyle {
-    configFile = project(':').file("config/checkstyle/checkstyle.xml")
-    configProperties = ["suppressionFile": project(':').file("config/checkstyle/suppressions.xml")]
-    toolVersion = "8.9"
-}
-
-tasks.withType(Checkstyle) {
-    reports {
-        xml.enabled false
-        html.enabled true
-    }
-}
-
-
-
-afterEvaluate {
-    def junitPlatformTestTask = (JavaExec) project.tasks.getByName('junitPlatformTest')
-
-    jacoco {
-        toolVersion = "0.8.1"
-        applyTo(junitPlatformTestTask)
-    }
-
-    project.task(type: JacocoReport, "junitPlatformJacocoReport") {
-        executionData(junitPlatformTestTask)
-        sourceSets(sourceSets.main)
-
-        sourceDirectories = files(sourceSets.main.allSource.srcDirs)
-        classDirectories = files(sourceSets.main.output)
-
-        reports {
-            xml.enabled true
-            xml.destination file("${buildDir}/jacoco/report.xml")
-            html.enabled true
-            html.destination file("${buildDir}/jacoco/html")
-        }
-    }
-
-    project.task(type: JacocoCoverageVerification, "junitPlatformJacocoCoverageReport") {
-        executionData(junitPlatformTestTask)
-        sourceSets(sourceSets.main)
-        sourceDirectories = files(sourceSets.main.allSource.srcDirs)
-        classDirectories = files(sourceSets.main.output)
-        violationRules {
-            rule {
-                limit {
-                    minimum = 1
-                    counter = 'BRANCH'
-                    value = 'COVEREDRATIO'
-                }
-            }
-            rule {
-                enabled = true
-                element = 'CLASS'
-                includes = ['me.aikin.seed.AboutController']
-
-                limit {
-                    counter = 'BRANCH'
-                    value = 'COVEREDRATIO'
-                    minimum = 1
-                }
-            }
-        }
-    }
-}

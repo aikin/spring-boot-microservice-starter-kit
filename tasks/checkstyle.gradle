@@ -1,0 +1,14 @@
+apply plugin: "checkstyle"
+
+checkstyle {
+    configFile = project(':').file("config/checkstyle/checkstyle.xml")
+    configProperties = ["suppressionFile": project(':').file("config/checkstyle/suppressions.xml")]
+    toolVersion = "8.9"
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.enabled false
+        html.enabled true
+    }
+}
