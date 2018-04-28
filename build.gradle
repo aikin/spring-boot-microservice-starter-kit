@@ -20,6 +20,7 @@ apply plugin: 'idea'
 apply plugin: 'org.junit.platform.gradle.plugin'
 apply plugin: 'org.springframework.boot'
 apply plugin: "checkstyle"
+apply plugin: "jacoco"
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -79,13 +80,66 @@ bootRun.systemProperty 'spring.profiles.active', env
 
 checkstyle {
     configFile = project(':').file("config/checkstyle/checkstyle.xml")
-    configProperties = ["suppressionFile" : project(':').file("config/checkstyle/suppressions.xml")]
-    toolVersion = "6.0"
+    configProperties = ["suppressionFile": project(':').file("config/checkstyle/suppressions.xml")]
+    toolVersion = "8.9"
 }
 
 tasks.withType(Checkstyle) {
     reports {
         xml.enabled false
         html.enabled true
+    }
+}
+
+
+
+afterEvaluate {
+    def junitPlatformTestTask = (JavaExec) project.tasks.getByName('junitPlatformTest')
+
+    jacoco {
+        toolVersion = "0.8.1"
+        applyTo(junitPlatformTestTask)
+    }
+
+    project.task(type: JacocoReport, "junitPlatformJacocoReport") {
+        executionData(junitPlatformTestTask)
+        sourceSets(sourceSets.main)
+
+        sourceDirectories = files(sourceSets.main.allSource.srcDirs)
+        classDirectories = files(sourceSets.main.output)
+
+        reports {
+            xml.enabled true
+            xml.destination file("${buildDir}/jacoco/report.xml")
+            html.enabled true
+            html.destination file("${buildDir}/jacoco/html")
+        }
+    }
+
+    project.task(type: JacocoCoverageVerification, "junitPlatformJacocoCoverageReport") {
+        executionData(junitPlatformTestTask)
+        sourceSets(sourceSets.main)
+        sourceDirectories = files(sourceSets.main.allSource.srcDirs)
+        classDirectories = files(sourceSets.main.output)
+        violationRules {
+            rule {
+                limit {
+                    minimum = 1
+                    counter = 'BRANCH'
+                    value = 'COVEREDRATIO'
+                }
+            }
+            rule {
+                enabled = true
+                element = 'CLASS'
+                includes = ['me.aikin.seed.AboutController']
+
+                limit {
+                    counter = 'BRANCH'
+                    value = 'COVEREDRATIO'
+                    minimum = 1
+                }
+            }
+        }
     }
 }
