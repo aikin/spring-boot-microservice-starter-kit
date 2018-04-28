@@ -1,7 +1,11 @@
 apply plugin: "jacoco"
 
+junitPlatform {
+    details "summary"
+}
+
 afterEvaluate {
-    def junitPlatformTestTask = (JavaExec) project.tasks.getByName('junitPlatformTest')
+    def junitPlatformTestTask = (JavaExec) project.tasks.getByName("junitPlatformTest")
 
     jacoco {
         toolVersion = "0.8.1"
@@ -32,18 +36,18 @@ afterEvaluate {
             rule {
                 limit {
                     minimum = 1
-                    counter = 'BRANCH'
-                    value = 'COVEREDRATIO'
+                    counter = "BRANCH"
+                    value = "COVEREDRATIO"
                 }
             }
             rule {
                 enabled = true
-                element = 'CLASS'
-                includes = ['me.aikin.seed.AboutController']
+                element = "CLASS"
+                includes = ["me.aikin.seed.AboutController"]
 
                 limit {
-                    counter = 'BRANCH'
-                    value = 'COVEREDRATIO'
+                    counter = "BRANCH"
+                    value = "COVEREDRATIO"
                     minimum = 1
                 }
             }

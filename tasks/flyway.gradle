@@ -3,25 +3,25 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'org.yaml:snakeyaml:1.20'
+        classpath "org.yaml:snakeyaml:1.20"
     }
 }
 
 import org.yaml.snakeyaml.Yaml
 
 
-apply plugin: 'org.flywaydb.flyway'
+apply plugin: "org.flywaydb.flyway"
 
-def env = project.hasProperty('env') ? env : 'dev'
-def filePath = env == 'test' ? "${projectDir}/src/test/resources/application-${env}.yml" : "${projectDir}/src/main/resources/application-${env}.yml"
+def env = project.hasProperty("env") ? env : "dev"
+def filePath = env == "test" ? "${projectDir}/src/test/resources/application-${env}.yml" : "${projectDir}/src/main/resources/application-${env}.yml"
 def config = new Yaml().load(new File(filePath).newInputStream())
 
 flyway {
-    driver = 'com.mysql.cj.jdbc.Driver'
+    driver = "com.mysql.cj.jdbc.Driver"
     url = config.spring.datasource.url
     user = config.spring.datasource.username
     password = config.spring.datasource.password
-    table = 'schema_version'
+    table = "schema_version"
     locations = ["filesystem:${projectDir}/src/main/resources/db/migration/mysql"]
-    sqlMigrationPrefix = 'MySQL-'
+    sqlMigrationPrefix = "MySQL-"
 }
