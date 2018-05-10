@@ -24,7 +24,7 @@
       
 ### 测试策略：
   - [x] Unit Test
-  - [ ] Component Test
+  - [x] Component Test
   - [x] Api Test 
   - [x] Test Coverage 
 
