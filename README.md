@@ -12,14 +12,18 @@
   ...
 
 ### 配置管理：
- - [x] 版本控制：Git
- - [x] 依赖管理：Gradle
- - [x] 软件配置管理（应程序的配置管理）：application.yml
- - [ ] 环境管理： Vagrant/Docker
+ - [x] Version Control System：Git
+ - [x] Build Tool：Gradle
+ - [x] Config Management：application.yml
+ - [x] Env Management： Vagrant/Docker
+    * `memory size setup`
+    * `network port link`
+    * `database link`
+    * `related to the envrionment configuration`
 
 ### 代码规范：
  - [x] Checkstyle/PMD/FindBugs
- - [x] Editorconfig
+ - [x] EditorConfig
  - [x] SonarQube
       
 ### 测试策略：
@@ -29,7 +33,7 @@
   - [x] Test Coverage 
 
 ### 持续交付：
-  - [ ] GoCD/Jenkins
+  - [ ] GoCD/Jenkins(pipeline as code)
   - [ ] Rancher
   - [ ] Kubernetes
   
