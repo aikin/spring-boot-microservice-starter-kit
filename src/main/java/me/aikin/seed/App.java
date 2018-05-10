@@ -9,10 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @EnableAutoConfiguration
 @Slf4j
 public class App {
-    public String getGreeting() {
-        return "Hello world.";
-    }
-
     public static void main(String[] args) {
 
         SpringApplication.run(App.class, args);

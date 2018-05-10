@@ -23,7 +23,7 @@
  - [x] SonarQube
       
 ### 测试策略：
-  - [ ] Unit Test
+  - [x] Unit Test
   - [ ] Component Test
   - [x] Api Test 
   - [x] Test Coverage 
