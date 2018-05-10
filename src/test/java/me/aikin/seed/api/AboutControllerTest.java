@@ -14,7 +14,7 @@ public class AboutControllerTest extends ApiBaseTest {
         when().
                 get("/api/about").
         then().
-                body(equalTo("spring boot best seed."));
+                body(equalTo("aikin: about."));
     }
 
 }
