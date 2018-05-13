@@ -1,25 +1,24 @@
 package me.aikin.seed.model;
 
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class User implements Serializable {
-    private BigInteger id;  //TODO: generate auto
+    private Long id;  //TODO: generate auto
     private String  userName;
-    private Date createdAt; //TODO: should use timespan
+    private Timestamp createdAt;
 
-    public User(BigInteger id, String userName, Date createdAt) {
+    public User(Long id, String userName, Timestamp createdAt) {
         this.id = id;
         this.userName = userName;
         this.createdAt = createdAt;
     }
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -31,11 +30,11 @@ public class User implements Serializable {
         this.userName = userName;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 

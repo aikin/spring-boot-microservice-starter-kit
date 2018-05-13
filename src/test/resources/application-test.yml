@@ -5,8 +5,8 @@ spring:
   profiles:
     active: test
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/spring_boot_seed_test
+    url: jdbc:mysql://127.0.0.1:3306/spring_boot_microservice_seed_test
     username: root
     password:
-    name: spring_boot_seed_test
+    name: spring_boot_seed_microservice_test
     driver-class-name: com.mysql.cj.jdbc.Driver
