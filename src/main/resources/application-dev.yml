@@ -5,5 +5,5 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/spring_boot_microservice_seed_dev
     username: root
     password:
-    name: spring_boot_seed_microservice_dev
+    name: spring_boot_microservice_seed_dev
     driver-class-name: com.mysql.cj.jdbc.Driver
