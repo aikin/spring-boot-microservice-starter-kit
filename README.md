@@ -36,7 +36,7 @@
   - [x] Database schema management(flyway)
   - [x] DIP(Spring Container)  
   - [x] AOP(Spring AOP)
-  - [ ] ORM(mybatis)
+  - [x] ORM(mybatis)
   - [ ] Security(Spring Security)  
   - [ ] Session management
 
