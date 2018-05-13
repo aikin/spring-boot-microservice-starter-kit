@@ -1,4 +1,4 @@
-package me.aikin.seed;
+package me.aikin.seed.resource;
 
 import me.aikin.seed.services.AboutService;
 import me.aikin.seed.services.UserService;

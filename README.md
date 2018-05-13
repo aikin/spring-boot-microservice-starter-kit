@@ -16,10 +16,10 @@
  - [x] Build Tool：Gradle
  - [x] Config Management：application.yml
  - [x] Env Management： Vagrant/Docker
-    * `memory size setup`
-    * `network port link`
-    * `database link`
-    * `related to the envrionment configuration`
+    - [ ] `memory size setup`
+    - [ ] `network port link`
+    - [ ] `database link`
+    - [ ] `related to the envrionment configuration`
 
 ### 代码规范：
  - [x] Checkstyle/PMD/FindBugs
@@ -30,7 +30,15 @@
   - [x] Unit Test
   - [x] Component Test
   - [x] Api Test 
-  - [x] Test Coverage 
+  - [x] Test Coverage
+  
+### 应用层
+  - [x] Database schema management(flyway)
+  - [x] DIP(Spring Container)  
+  - [x] AOP(Spring AOP)
+  - [ ] ORM(mybatis)
+  - [ ] Security(Spring Security)  
+  - [ ] Session management
 
 ### 持续交付：
   - [ ] GoCD/Jenkins(pipeline as code)
@@ -43,14 +51,6 @@
   - [ ] Register
   - [ ] Hystrix
   - [ ] Consul Config
-  
-### 应用层
-  - [x] Database schema management(flyway)
-  - [x] DIP(Spring Container)  
-  - [ ] AOP(Spring AOP)
-  - [ ] ORM(mybatis)
-  - [ ] Security(Spring Security)  
-  - [ ] Session management  
   
 ### 安全策略：
   *

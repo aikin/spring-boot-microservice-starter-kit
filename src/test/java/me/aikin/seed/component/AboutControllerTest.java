@@ -1,7 +1,7 @@
 package me.aikin.seed.component;
 
 
-import me.aikin.seed.AboutController;
+import me.aikin.seed.resource.AboutController;
 import me.aikin.seed.services.AboutService;
 import me.aikin.seed.services.UserService;
 import org.junit.jupiter.api.Test;
