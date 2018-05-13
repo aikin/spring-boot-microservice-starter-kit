@@ -31,6 +31,7 @@
   - [x] Component Test
   - [x] Api Test 
   - [x] Test Coverage
+  - [ ] Contract Test
   
 ### 应用层
   - [x] Database schema management(flyway)
