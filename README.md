@@ -16,7 +16,7 @@
  - [x] Build Tool：Gradle
  - [x] Config Management：application.yml
  - [x] Env Management： Vagrant/Docker
-    - [ ] `memory size setup`
+    - [x] `memory size setup`
     - [ ] `network port link`
     - [ ] `database link`
     - [ ] `related to the envrionment configuration`

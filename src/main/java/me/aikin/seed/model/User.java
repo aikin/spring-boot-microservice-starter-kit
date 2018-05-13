@@ -5,9 +5,9 @@ import java.math.BigInteger;
 import java.util.Date;
 
 public class User implements Serializable {
-    private BigInteger id;  //TODO:
+    private BigInteger id;  //TODO: generate auto
     private String  userName;
-    private Date createdAt; //TODO:
+    private Date createdAt; //TODO: should use timespan
 
     public User(BigInteger id, String userName, Date createdAt) {
         this.id = id;
