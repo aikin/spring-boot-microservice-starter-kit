@@ -101,5 +101,5 @@ gradle-app.setting
 
 # # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
 # gradle/wrapper/gradle-wrapper.properties
-spring-boot-best-seed.iml
+spring-boot-microservice-seed.iml
 
