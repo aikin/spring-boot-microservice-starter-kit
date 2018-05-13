@@ -28,17 +28,7 @@ public class TruncateDatabaseService {
             Connection sqlSessionConnection = sqlSession.getConnection();
             sqlSessionConnection.prepareStatement("SET FOREIGN_KEY_CHECKS = FALSE;").execute();
 
-            String tableNameColumn = "table_name";
-            String queryString = "SELECT %s FROM information_schema.tables WHERE table_type = 'base table' AND table_schema = '%s'";
-            String queryAllTableNamesStatement = String.format(queryString, tableNameColumn, DatabaseName);
-
-            ResultSet resultSet = sqlSessionConnection.prepareStatement(queryAllTableNamesStatement).executeQuery();
-            ArrayList<String> tableNames1 = new ArrayList<>();
-            while (resultSet.next()) {
-                String tableName1 = resultSet.getString(tableNameColumn);
-                tableNames1.add(tableName1);
-            }
-            ArrayList<String> tableNames = tableNames1;
+            ArrayList<String> tableNames = queryAllTableNames(sqlSessionConnection);
             tableNames.forEach(tableName -> {
                 try {
                     PreparedStatement preparedStatement = sqlSessionConnection.prepareStatement("TRUNCATE TABLE " + tableName + ";");
@@ -55,4 +45,17 @@ public class TruncateDatabaseService {
         }
     }
 
+    private ArrayList<String> queryAllTableNames(Connection sqlSessionConnection) throws SQLException {
+        String tableNameColumn = "table_name";
+        String queryString = "SELECT %s FROM information_schema.tables WHERE table_type = 'base table' AND table_schema = '%s'";
+        String queryAllTableNamesStatement = String.format(queryString, tableNameColumn, DatabaseName);
+
+        ResultSet resultSet = sqlSessionConnection.prepareStatement(queryAllTableNamesStatement).executeQuery();
+        ArrayList<String> tableNames = new ArrayList<>();
+        while (resultSet.next()) {
+            String tableName = resultSet.getString(tableNameColumn);
+            tableNames.add(tableName);
+        }
+        return tableNames;
+    }
 }
