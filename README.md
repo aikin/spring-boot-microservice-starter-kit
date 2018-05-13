@@ -1,4 +1,4 @@
-# Spring Boot Best Seed
+# Spring Boot MicroService Seed
 
 ### 技术栈：
   * spring boot
