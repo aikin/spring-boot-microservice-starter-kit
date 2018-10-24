@@ -1,4 +1,15 @@
-# Spring Boot MicroService Seed
+# Spring Boot MicroService Template
+
+ - 技术栈
+ - 代码规范
+ - 配置管理
+ - 测试策略
+ - 应用层
+ - 数据管理
+ - 集成策略
+ - 安全策略
+ - 持续交付
+ - 运维监控
 
 ### 技术栈：
   * spring boot
@@ -11,6 +22,12 @@
   * git
   ...
 
+### 代码规范：
+ - [x] Checkstyle/PMD/FindBugs/AlibabaJavaCodingGuidelines
+ - [x] EditorConfig
+ - [x] SonarQube  
+ - [ ] API Normalize
+
 ### 配置管理：
  - [x] Version Control System：Git
  - [x] Build Tool：Gradle
@@ -20,11 +37,6 @@
     - [ ] `network port link`
     - [ ] `database link`
     - [ ] `related to the envrionment configuration`
-
-### 代码规范：
- - [x] Checkstyle/PMD/FindBugs
- - [x] EditorConfig
- - [x] SonarQube
       
 ### 测试策略：
   - [x] Unit Test
@@ -32,36 +44,51 @@
   - [x] Api Test 
   - [x] Test Coverage
   - [ ] Contract Test
+  - [ ] Integration Test
+  - [ ] Performance Test
+  - [ ] Test Coverage
   
 ### 应用层
-  - [x] Database schema management(flyway)
+  - [ ] DDD Tactics
   - [x] DIP(Spring Container)  
   - [x] AOP(Spring AOP)
   - [x] ORM(mybatis)
-  - [ ] Security(Spring Security)  
-  - [ ] Session management
+  - [ ] Asnyc
+  - [ ] Transactional Management   
+  - [ ] DSL
+  - [ ] API Design: RESTfuls(Idempotent, Error Handling, etc.)
+
+### 数据管理
+  - [x] Migration: Database schema management: flyway
+  - [ ] Database: RDBMS
+  - [ ] Message: Kafaka
+  - [ ] Cache: Redis、Spring Cache
+
+### 集成策略
+  - [ ] API Semantic Versioning
+  - [ ] Event Driven
+  - [ ] Service Discovery/Register
+  - [ ] Service Fallback: Hystrix
+  - [ ] Load Balance: Ribbon
+  - [ ] API Call: Feign
+  ....
+
+ ### 安全策略
+  - [ ] Auth: session management、Json web token
+  - [ ] Permission: Data permission、Feature permission
+  - [ ] Security: CORS、XSS、SQL Inject
+  ...
 
 ### 持续交付：
-  - [ ] GoCD/Jenkins(pipeline as code)
-  - [ ] Rancher
-  - [ ] Kubernetes
-  
+  - [ ] Pipeline: GoCD/Jenkins(pipeline as code)
+  - [ ] Containeize: Docker
+  - [ ] Container Scheduling and Management: Kubernetes、Docker Compose
+  - [ ] Container management platform: Rancher
+ ...
 
-### 微服务策略
-  - [ ] Discovery
-  - [ ] Register
-  - [ ] Hystrix
-  - [ ] Consul Config
-  
-### 安全策略：
-  *
-### 运维
-  - [ ] APP Dynamic/Pinpoint
-  - [ ] ElasticSearch
-  - [ ] Kibana
+### 运维监控 
+  - [ ] APM: APP Dynamic、Pinpoint、Grafana、Prometheus、Zipkin
+  - [ ] Logging System: EFK
   - [ ] Cerebro
-  - [ ] Filebeat/Logstash
-  - [ ] Grafana/Prometheus 
-...  
-... 
 
+...
