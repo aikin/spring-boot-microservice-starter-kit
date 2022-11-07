@@ -1,4 +1,4 @@
-# Spring Boot MicroService Template
+# Spring Boot MicroService Starter Kit
 
  - 技术栈
  - 代码规范
